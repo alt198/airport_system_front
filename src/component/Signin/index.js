@@ -105,10 +105,13 @@
 
 // export default connect(null, {loginUser})(Login);
 import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { login } from './auth/actions/auth';
+import { login } from '../../auth/actions/auth';
 import axios from 'axios';
+
+
+// const Navigate = useNavigate()
 
 const Login = ({ login, isAuthenticated }) => {
     const [formData, setFormData] = useState({
@@ -130,7 +133,7 @@ const Login = ({ login, isAuthenticated }) => {
   
 
     if (isAuthenticated) {
-        return <Redirect to='/' />
+        return <Navigate to='/' />
     }
 
     return (
@@ -163,13 +166,7 @@ const Login = ({ login, isAuthenticated }) => {
                 </div>
                 <button className='btn btn-primary' type='submit'>Login</button>
             </form>
-            <button className='btn btn-danger mt-3' onClick={continueWithGoogle}>
-                Continue With Google
-            </button>
-            <br />
-            <button className='btn btn-primary mt-3' onClick={continueWithFacebook}>
-                Continue With Facebook
-            </button>
+            
             <p className='mt-3'>
                 Don't have an account? <Link to='/signup'>Sign Up</Link>
             </p>
